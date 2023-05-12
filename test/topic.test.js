@@ -6,11 +6,16 @@ const common = {
 };
 const bunny = {
     exchange: {
-        'ut-port-rabbit-fanout': {}
+        'ut-port-rabbit-topic': {
+            type: 'topic'
+        }
     },
     queue: {
         exec: {
-            bind: 'ut-port-rabbit-fanout'
+            bind: {
+                exchange: 'ut-port-rabbit-topic',
+                pattern: 'bugs.*.*'
+            }
         }
     }
 };
@@ -40,7 +45,7 @@ require('ut-run').run({
     config: {
         implementation: 'port-rabbit',
         test: true,
-        bugs: {...common, exchange: 'ut-port-rabbit-fanout'},
+        bugs: {...common, exchange: 'ut-port-rabbit-topic'},
         bunny1: {...common, connection: bunny},
         bunny2: {...common, connection: bunny},
         utRun: {
