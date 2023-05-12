@@ -34,9 +34,9 @@ class RabbitStream extends Duplex {
 
             const entries = object => Object.entries(object || {}).filter(([, value]) => Boolean(value));
 
-            for (const [name, { type = 'fanout', options }] of entries(exchange)) await channel.assertExchange(name, type, options);
+            for (const [name, { type = 'fanout', options }] of entries(exchange)) await channel.assertExchange(name, type, {autoDelete: true, options});
             for (const [name, { name: queueName, bind, ...options }] of entries(queue)) {
-                this[QUEUE][name] = await channel.assertQueue(queueName || '', { exclusive: true, autoDelete: true, ...options });
+                this[QUEUE][name] = await channel.assertQueue(queueName || '', { exclusive: !queueName, autoDelete: true, ...options });
                 await channel.consume(this[QUEUE][name].queue, handleIncoming);
                 const { exchange, pattern } = (typeof bind === 'string') ? { exchange: bind } : (bind || {});
                 if (exchange) {

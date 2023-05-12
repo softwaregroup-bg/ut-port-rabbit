@@ -1,4 +1,4 @@
-module.exports = function test() {
+module.exports = function test({config: {calls = 2}}) {
     return {
         params: function(test, bus, run) {
             return run(test, bus, [{
@@ -14,7 +14,7 @@ module.exports = function test() {
                 params: {},
                 result(result, assert) {
                     assert.comment(result);
-                    assert.same(result.calls.length, 2, 'expect 2 calls');
+                    assert.same(result.calls.length, calls, `expect ${calls} calls`);
                 }
             }]);
         }
