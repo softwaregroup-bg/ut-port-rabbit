@@ -15,7 +15,10 @@
     },
     "devDependencies": {
         "tap": "^16.1.0",
-        "ut-run": "^10.70.14"
+        "ut-port-script": "^7.2.0",
+        "ut-port-tcp": "^7.4.0",
+        "ut-run": "^10.70.14",
+        "why-is-node-running": "^2.2.0"
     },
     "scripts": {
         "changelog": "ut-changelog",
