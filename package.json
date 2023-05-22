@@ -1,6 +1,6 @@
 {
     "name": "ut-port-rabbit",
-    "version": "1.1.1",
+    "version": "1.1.2",
     "main": "index.js",
     "dependencies": {
         "ut-function.dispatch": "^1.4.1",

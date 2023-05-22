@@ -1,3 +1,7 @@
+## [1.1.2](https://github.com/softwaregroup-bg/ut-port-rabbit/compare/v1.1.1...v1.1.2) (2023-05-22)
+
+
+
 ## [1.1.1](https://github.com/softwaregroup-bg/ut-port-rabbit/compare/v1.1.0...v1.1.1) (2023-05-12)
 
 
