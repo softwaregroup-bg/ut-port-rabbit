@@ -1,6 +1,6 @@
 module.exports = ({
     calls = 2,
-    exchange,
+    exchange = undefined,
     type = undefined,
     queue = undefined,
     pattern = undefined,
@@ -13,20 +13,20 @@ module.exports = ({
         mle,
         destination: 'exec'
     };
-    const bunny = {
+    const bunny = name => ({
         exchange: {
-            [exchange]: {type}
+            ...exchange && {[exchange]: {type}}
         },
         queue: {
             exec: {
-                name: queue,
+                name,
                 bind: {
                     exchange,
                     pattern
                 }
             }
         }
-    };
+    });
 
     require('ut-run').run({
         main: [
@@ -56,8 +56,8 @@ module.exports = ({
                 calls
             },
             bugs: {...common, exchange},
-            bunny1: {...common, connection: bunny},
-            bunny2: {...common, connection: bunny},
+            bunny1: {...common, connection: bunny(Array.isArray(queue) ? queue[0] : queue)},
+            bunny2: {...common, connection: bunny(Array.isArray(queue) ? queue[1] : queue)},
             utRun: {
                 test: {
                     jobs: 'test'

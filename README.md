@@ -17,7 +17,8 @@ Wrap around [amqplib], that allows messaging through RabbitMQ.
   - `ssl` - passed as socketOptions to [connect]
     - `cert` - the client certificate to use or `certPath` from which to load it
     - `key` - the private key or `keyPath` from which to load it
-    - `ca` - the root CA to trust or `caPaths` array of strings, from which to load them
+    - `ca` - the root CA to trust or `caPaths` array of strings, from which
+       to load them
     - `passphrase` - the pass phrase for the `key`
   - `exchange` - Map describing exchanges to created on start.
     - `type`
